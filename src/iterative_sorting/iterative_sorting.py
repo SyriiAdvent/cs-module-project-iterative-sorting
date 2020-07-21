@@ -1,4 +1,4 @@
-
+from raw_input_list import lst
 
 
 # TO-DO: Complete the selection_sort() function below
@@ -19,6 +19,7 @@ def selection_sort(arr):
     return arr
 
 selection_sort([5,2,1,7,8,9,32])
+# selection_sort(lst)
 
 
 # TO-DO:  implement the Bubble Sort function below
@@ -30,7 +31,6 @@ def bubble_sort(arr):
             if arr[i] > arr[i + 1]:
                 arr[i], arr[i + 1] = arr[i + 1], arr[i]
                 swapped = True
-    swapped = True
 
     return arr
 
@@ -53,6 +53,24 @@ What is the time and space complexity of the counting sort algorithm?
 '''
 def counting_sort(arr, maximum=None):
     # Your code here
+    if len(arr):
+        maximum = arr[0]
+    else:
+        return []
 
+    for i in arr:
+        if i > maximum:
+            maximum = i
+        if i < 0:
+            return "Error, negative numbers not allowed in Count Sort"
+    count = [0] * (maximum + 1)
 
-    return arr
+    for i in arr:
+        count[i] += 1
+
+    new_arr = []
+    for value, count in enumerate(count):
+        for i in range(count):
+            new_arr.append(value)
+
+    return new_arr
